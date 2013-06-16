@@ -1,10 +1,31 @@
 # go-mmap
 
 This package simplifies dealing with memory-mapped files by wrapping related
-system calls and constants and providing them together. Currently this package
-provides rather complete support for Linux and OS X Darwin. Patches for other
-GOOS such as BSD and Windows are welcomed as long as you keep the API reasonably
-consistent. 
+system calls and constants and providing them here in one place. Currently this
+package provides rather complete support for Linux and OS X Darwin. Patches for
+other GOOS such as BSD and Windows are welcomed as long as you keep the API
+reasonably consistent. 
+
+Type `Mmap` is alias to `[]byte` which is memory-mapped. Included memory-map
+related system calls are:
+
+* `madvise`
+* `mincore`
+* `mlock`
+* `mmap`
+* `mprotect`
+* `msync`
+* `munlock`
+* `munmap`
+* `mlockall` (Linux-only)
+* `munlockall` (Linux-only)
+
+For the exact semantics of each system call and constant, please refer to the
+`man` pages of the corresponding platforms.
+
+## Documentation
+
+API documentation is available at http://godoc.org/github.com/riobard/go-mmap
 
 ## Limitations
 
@@ -16,7 +37,3 @@ length of a slice is determined by `int`. Since Go 1.1 `int` becomes 64-bit on
 If you are using Go version prior to Go 1.1, or if you are on 32-bit platforms,
 keep in mind the limitation. 
 
-
-## Documentation
-
-API documentation is available at http://godoc.org/github.com/riobard/go-mmap
