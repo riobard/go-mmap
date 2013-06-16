@@ -32,10 +32,9 @@ API documentation is available at http://godoc.org/github.com/riobard/go-mmap
 Prior to Go 1.1, `int` is limited to 32-bit even on 64-bit platforms.  As a
 result, a memory-mapped region `[]byte` cannot be larger than 2GB since the
 length of a slice is determined by `int`. Since Go 1.1 `int` becomes 64-bit on
-64-bit platforms, so `[]byte` can be significantly larger. 
-
-If you are using Go version prior to Go 1.1, or if you are on 32-bit platforms,
-keep in mind the limitation. 
+64-bit platforms, so `[]byte` can be significantly larger. If you are using Go
+version prior to Go 1.1, or if you are on 32-bit platforms, keep in mind the
+limitation. 
 
 
 ## Related
@@ -43,7 +42,5 @@ keep in mind the limitation.
 There are two other packages which might be useful to you if you are not
 satisfied by this one:
 
-* [mmap-go](https://github.com/edsrzf/mmap-go)
-  ([doc](http://godoc.org/github.com/edsrzf/mmap-go))
-* [gommap](https://launchpad.net/gommap/)
-  ([doc](http://godoc.org/launchpad.net/gommap))
+* [gommap](https://launchpad.net/gommap/) ([doc](http://godoc.org/launchpad.net/gommap))
+* [mmap-go](https://github.com/edsrzf/mmap-go) ([doc](http://godoc.org/github.com/edsrzf/mmap-go))
