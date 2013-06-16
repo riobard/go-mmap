@@ -42,5 +42,9 @@ limitation.
 There are two other packages which might be useful to you if you are not
 satisfied by this one:
 
-* [gommap](https://launchpad.net/gommap/) ([doc](http://godoc.org/launchpad.net/gommap))
-* [mmap-go](https://github.com/edsrzf/mmap-go) ([doc](http://godoc.org/github.com/edsrzf/mmap-go))
+* [gommap](https://launchpad.net/gommap/)
+  ([doc](http://godoc.org/launchpad.net/gommap)): this one is almost what I
+  wanted, but lacks some flags and features on Linux and Darwin.
+* [mmap-go](https://github.com/edsrzf/mmap-go)
+  ([doc](http://godoc.org/github.com/edsrzf/mmap-go)): this one lacks support
+  for `mprotect` and `mincore`, but supports Windows.
