@@ -43,7 +43,7 @@ keep in mind the limitation.
 There are two other packages which might be useful to you if you are not
 satisfied by this one:
 
-* https://github.com/edsrzf/mmap-go
-  [Documentation](http://godoc.org/github.com/edsrzf/mmap-go)
-* https://launchpad.net/gommap/
-  [Documentation](http://godoc.org/launchpad.net/gommap)
+* [mmap-go](https://github.com/edsrzf/mmap-go)
+  ([doc](http://godoc.org/github.com/edsrzf/mmap-go))
+* [gommap](https://launchpad.net/gommap/)
+  ([doc](http://godoc.org/launchpad.net/gommap))
