@@ -51,8 +51,15 @@ const (
 
 type Mmap []byte
 
+// Create an mmap backed by a file. Offset must be multiples of page size.
 func Map(f *os.File, offset int64, len int, prot Prot, flags MapFlag) (Mmap, error) {
 	return syscall.Mmap(int(f.Fd()), offset, len, int(prot), int(flags))
+}
+
+// Create an anonymous mmap without backing file
+func AnonMap(len int, prot Prot, flags MapFlag) (Mmap, error) {
+	flags |= MAP_ANON // force anonymous
+	return syscall.Mmap(-1, 0, len, int(prot), int(flags))
 }
 
 func (m Mmap) Unmap() error {
