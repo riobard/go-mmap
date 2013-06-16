@@ -37,3 +37,13 @@ length of a slice is determined by `int`. Since Go 1.1 `int` becomes 64-bit on
 If you are using Go version prior to Go 1.1, or if you are on 32-bit platforms,
 keep in mind the limitation. 
 
+
+## Related
+
+There are two other packages which might be useful to you if you are not
+satisfied by this one:
+
+* https://github.com/edsrzf/mmap-go
+  [Documentation](http://godoc.org/github.com/edsrzf/mmap-go)
+* https://launchpad.net/gommap/
+  [Documentation](http://godoc.org/launchpad.net/gommap)
