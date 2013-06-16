@@ -32,10 +32,10 @@ const (
 	MADV_DODUMP              = 17                       // since Linux 3.4
 )
 
-type LockAllFlag int
+type LockallFlag int
 
 const (
-	MCL_CURRENT LockAllFlag = syscall.MCL_CURRENT
+	MCL_CURRENT LockallFlag = syscall.MCL_CURRENT
 	MCL_FUTURE              = syscall.MCL_FUTURE
 )
 
@@ -55,7 +55,7 @@ func (m Mmap) Protect(prot int) error {
 	return syscall.Mprotect(m, prot)
 }
 
-func Lockall(flags LockAllFlag) error {
+func Lockall(flags LockallFlag) error {
 	return syscall.Mlockall(int(flags))
 }
 
