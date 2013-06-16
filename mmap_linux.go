@@ -5,7 +5,8 @@ import (
 )
 
 const (
-	MAP_ANONYMOUS     MapFlag = syscall.MAP_ANONYMOUS
+	MAP_32BIT         MapFlag = syscall.MAP_32BIT // since Linux 2.4.20, 2.6
+	MAP_ANONYMOUS             = syscall.MAP_ANONYMOUS
 	MAP_DENYWRITE             = syscall.MAP_DENYWRITE
 	MAP_NORESERVE             = syscall.MAP_NORESERVE
 	MAP_GROWSDOWN             = syscall.MAP_GROWSDOWN
