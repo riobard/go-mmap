@@ -51,8 +51,8 @@ const (
 
 type Mmap []byte
 
-func Map(f *os.File, offset, len int, prot Prot, flags int) (Mmap, error) {
-	return syscall.Mmap(int(f.Fd()), int64(offset), len, int(prot), flags)
+func Map(f *os.File, offset int64, len int, prot Prot, flags MapFlag) (Mmap, error) {
+	return syscall.Mmap(int(f.Fd()), offset, len, int(prot), int(flags))
 }
 
 func (m Mmap) Unmap() error {
