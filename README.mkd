@@ -6,7 +6,7 @@ package provides rather complete support for Linux and OS X Darwin. Patches for
 other GOOS such as BSD and Windows are welcomed as long as you keep the API
 reasonably consistent. 
 
-Supported system call include:
+Supported system calls include:
 
 * `madvise`
 * `mincore`
@@ -20,7 +20,7 @@ Supported system call include:
 * `munlockall` (Linux-only)
 
 For the exact semantics of each system call and constant, please refer to the
-`man` pages of the corresponding platforms.
+`man` pages on the corresponding platforms.
 
 ## Documentation
 
