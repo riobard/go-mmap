@@ -40,18 +40,22 @@ const (
 	MCL_FUTURE              = syscall.MCL_FUTURE
 )
 
+// Give kernel hints about usage pattern.
 func (m Mmap) Advise(advice Advice) error {
 	return syscall.Madvise(m, int(advice))
 }
 
+// Prevent the mmap from being paged to the swap area.
 func (m Mmap) Lock() error {
 	return syscall.Mlock(m)
 }
 
+// Undo lock.
 func (m Mmap) Unlock() error {
 	return syscall.Munlock(m)
 }
 
+// Change the protect mode of the mmap.
 func (m Mmap) Protect(prot int) error {
 	return syscall.Mprotect(m, prot)
 }

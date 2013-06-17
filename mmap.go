@@ -56,18 +56,20 @@ func Map(f *os.File, offset int64, len int, prot Prot, flags MapFlag) (Mmap, err
 	return syscall.Mmap(int(f.Fd()), offset, len, int(prot), int(flags))
 }
 
-// Create an anonymous mmap without backing file
+// Create an anonymous mmap without backing file.
 func AnonMap(len int, prot Prot, flags MapFlag) (Mmap, error) {
 	flags |= MAP_ANON // force anonymous
 	return syscall.Mmap(-1, 0, len, int(prot), int(flags))
 }
 
+// Unmap the mmap. After unmap, program will crash if any slices based on the mmap are used.
 func (m Mmap) Unmap() error {
 	err := syscall.Munmap(m)
 	m = nil
 	return err
 }
 
+// Flush the changes in memory to the backing file. If MS_ASYNC flag is used, Sync() will return immediately; actual flushing will happen later.
 func (m Mmap) Sync(flags SyncFlag) error {
 	_, _, errno := syscall.Syscall(syscall.SYS_MSYNC, uintptr(unsafe.Pointer(&m[0])), uintptr(len(m)), uintptr(flags))
 	if errno != 0 {
@@ -76,6 +78,7 @@ func (m Mmap) Sync(flags SyncFlag) error {
 	return nil
 }
 
+// Return the in-core status of memory pages
 func (m Mmap) Incore() ([]MincoreState, error) {
 	pageSize := os.Getpagesize()
 	vec := make([]MincoreState, (len(m)+pageSize-1)/pageSize)
