@@ -49,9 +49,13 @@ const (
 	MINCORE_INCORE MincoreState = 0x1 // the memory page is core resident at the time of the mincore() call
 )
 
+// An mmap region. Subslicing of this type should be done at memory page
+// boundary (usually 4096 bytes) for most methods to work properly. The size
+// of the mmap is limited to 2GB on Go verions prior to 1.1 or 32-bit
+// platforms due to `int` being 32-bit.
 type Mmap []byte
 
-// Create an mmap backed by a file. Offset must be multiples of page size.
+// Create an mmap backed by a file. Offset must be multiples of memory page size.
 func Map(f *os.File, offset int64, len int, prot Prot, flags MapFlag) (Mmap, error) {
 	return syscall.Mmap(int(f.Fd()), offset, len, int(prot), int(flags))
 }
