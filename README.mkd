@@ -6,8 +6,7 @@ package provides rather complete support for Linux and OS X Darwin. Patches for
 other GOOS such as BSD and Windows are welcomed as long as you keep the API
 reasonably consistent. 
 
-Type `Mmap` is alias to `[]byte` which is memory-mapped. Included memory-map
-related system calls are:
+Supported system call include:
 
 * `madvise`
 * `mincore`
@@ -33,7 +32,7 @@ Prior to Go 1.1, `int` is limited to 32-bit even on 64-bit platforms.  As a
 result, a memory-mapped region `[]byte` cannot be larger than 2GB since the
 length of a slice is determined by `int`. Since Go 1.1 `int` becomes 64-bit on
 64-bit platforms, so `[]byte` can be significantly larger. If you are using Go
-version prior to Go 1.1, or if you are on 32-bit platforms, keep in mind the
+versions prior to Go 1.1, or if you are on 32-bit platforms, keep in mind the
 limitation. 
 
 

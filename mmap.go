@@ -36,17 +36,17 @@ const (
 type Advice int
 
 const (
-	MADV_DONTNEED   Advice = syscall.MADV_DONTNEED
-	MADV_NORMAL            = syscall.MADV_NORMAL
+	MADV_NORMAL     Advice = syscall.MADV_NORMAL
 	MADV_RANDOM            = syscall.MADV_RANDOM
 	MADV_SEQUENTIAL        = syscall.MADV_SEQUENTIAL
 	MADV_WILLNEED          = syscall.MADV_WILLNEED
+	MADV_DONTNEED          = syscall.MADV_DONTNEED
 )
 
 type MincoreState byte
 
 const (
-	MINCORE_INCORE MincoreState = 0x1
+	MINCORE_INCORE MincoreState = 0x1 // the memory page is core resident at the time of the mincore() call
 )
 
 type Mmap []byte
@@ -69,7 +69,8 @@ func (m Mmap) Unmap() error {
 	return err
 }
 
-// Flush the changes in memory to the backing file. If MS_ASYNC flag is used, Sync() will return immediately; actual flushing will happen later.
+// Flush the changes in memory to the backing file. If MS_ASYNC flag is used,
+// Sync() will return immediately; actual flushing will happen later.
 func (m Mmap) Sync(flags SyncFlag) error {
 	_, _, errno := syscall.Syscall(syscall.SYS_MSYNC, uintptr(unsafe.Pointer(&m[0])), uintptr(len(m)), uintptr(flags))
 	if errno != 0 {
@@ -78,7 +79,9 @@ func (m Mmap) Sync(flags SyncFlag) error {
 	return nil
 }
 
-// Return the in-core status of memory pages
+// Return a slice of MincoreState describing the in-core status of memory pages
+// in the mmap. You should bit OR with the various `MINCORE_*` flags to find
+// out the in-core state.
 func (m Mmap) Incore() ([]MincoreState, error) {
 	pageSize := os.Getpagesize()
 	vec := make([]MincoreState, (len(m)+pageSize-1)/pageSize)
