@@ -1,3 +1,6 @@
+/*
+Complete support for memory-mapped files.
+*/
 package mmap
 
 import (
