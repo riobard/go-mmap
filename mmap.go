@@ -1,5 +1,5 @@
 /*
-Complete support for memory-mapped files.
+Package mmap provides complete support for memory-mapped files.
 */
 package mmap
 
@@ -9,47 +9,48 @@ import (
 	"unsafe"
 )
 
+// Protection flag
 type Prot int
 
 const (
-	PROT_NONE  Prot = syscall.PROT_NONE
-	PROT_READ       = syscall.PROT_READ
-	PROT_WRITE      = syscall.PROT_WRITE
-	PROT_EXEC       = syscall.PROT_EXEC
+	PROT_NONE  = Prot(syscall.PROT_NONE)
+	PROT_READ  = Prot(syscall.PROT_READ)
+	PROT_WRITE = Prot(syscall.PROT_WRITE)
+	PROT_EXEC  = Prot(syscall.PROT_EXEC)
 )
 
 type MapFlag int
 
 const (
-	MAP_ANON    MapFlag = syscall.MAP_ANON
-	MAP_FILE            = syscall.MAP_FILE
-	MAP_FIXED           = syscall.MAP_FIXED
-	MAP_PRIVATE         = syscall.MAP_PRIVATE
-	MAP_SHARED          = syscall.MAP_SHARED
+	MAP_ANON    = MapFlag(syscall.MAP_ANON)
+	MAP_FILE    = MapFlag(syscall.MAP_FILE)
+	MAP_FIXED   = MapFlag(syscall.MAP_FIXED)
+	MAP_PRIVATE = MapFlag(syscall.MAP_PRIVATE)
+	MAP_SHARED  = MapFlag(syscall.MAP_SHARED)
 )
 
 type SyncFlag int
 
 const (
-	MS_ASYNC      SyncFlag = syscall.MS_ASYNC
-	MS_SYNC                = syscall.MS_SYNC
-	MS_INVALIDATE          = syscall.MS_INVALIDATE
+	MS_ASYNC      = SyncFlag(syscall.MS_ASYNC)
+	MS_SYNC       = SyncFlag(syscall.MS_SYNC)
+	MS_INVALIDATE = SyncFlag(syscall.MS_INVALIDATE)
 )
 
 type Advice int
 
 const (
-	MADV_NORMAL     Advice = syscall.MADV_NORMAL
-	MADV_RANDOM            = syscall.MADV_RANDOM
-	MADV_SEQUENTIAL        = syscall.MADV_SEQUENTIAL
-	MADV_WILLNEED          = syscall.MADV_WILLNEED
-	MADV_DONTNEED          = syscall.MADV_DONTNEED
+	MADV_NORMAL     = Advice(syscall.MADV_NORMAL)
+	MADV_RANDOM     = Advice(syscall.MADV_RANDOM)
+	MADV_SEQUENTIAL = Advice(syscall.MADV_SEQUENTIAL)
+	MADV_WILLNEED   = Advice(syscall.MADV_WILLNEED)
+	MADV_DONTNEED   = Advice(syscall.MADV_DONTNEED)
 )
 
 type MincoreState byte
 
 const (
-	MINCORE_INCORE MincoreState = 0x1 // the memory page is core resident at the time of the mincore() call
+	MINCORE_INCORE = MincoreState(0x1) // the memory page is core resident at the time of the mincore() call
 )
 
 // An mmap region. Subslicing of this type should be done at memory page

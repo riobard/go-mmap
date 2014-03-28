@@ -6,20 +6,20 @@ import (
 )
 
 const (
-	MAP_NOCACHE      MapFlag = syscall.MAP_NOCACHE
-	MAP_HASSEMAPHORE         = syscall.MAP_HASSEMAPHORE
+	MAP_NOCACHE      = MapFlag(syscall.MAP_NOCACHE)
+	MAP_HASSEMAPHORE = MapFlag(syscall.MAP_HASSEMAPHORE)
 )
 
 const (
-	MADV_FREE             Advice = syscall.MADV_FREE
-	MADV_ZERO_WIRED_PAGES        = syscall.MADV_ZERO_WIRED_PAGES
+	MADV_FREE             = Advice(syscall.MADV_FREE)
+	MADV_ZERO_WIRED_PAGES = Advice(syscall.MADV_ZERO_WIRED_PAGES)
 )
 
 const (
-	MINCORE_REFERENCED       MincoreState = 0x2
-	MINCORE_MODIFIED                      = 0x4
-	MINCORE_REFERENCED_OTHER              = 0x8
-	MINCORE_MODIFIED_OTHER                = 0x10
+	MINCORE_REFERENCED       = MincoreState(0x2)
+	MINCORE_MODIFIED         = MincoreState(0x4)
+	MINCORE_REFERENCED_OTHER = MincoreState(0x8)
+	MINCORE_MODIFIED_OTHER   = MincoreState(0x10)
 )
 
 func (m Mmap) Advise(advice Advice) error {
